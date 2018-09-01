@@ -1,0 +1,22 @@
+{
+  "name": "posist_assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vyomshm/posist_assignment.git"
+  },
+  "author": "@vcrizpy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vyomshm/posist_assignment/issues"
+  },
+  "homepage": "https://github.com/vyomshm/posist_assignment#readme",
+  "dependencies": {
+    "js-sha256": "^0.9.0"
+  }
+}
