@@ -9,7 +9,8 @@ class Node{
 		nodeId, 
 		referenceNodeId,
 		childReferenceNodeId,
-		genesisReferenceNodeId
+		genesisReferenceNodeId,
+		owner
 	){
 		this.timestamp = timestamp;
 		this.data = data;
@@ -19,12 +20,20 @@ class Node{
 		this.childReferenceNodeId = childReferenceNodeId;
 		this.genesisReferenceNodeId = genesisReferenceNodeId;
 		this.HashValue = this.getHash();
+		this.owner = owner;
+		this.value = data;
 	}
 
 	getHash(){
 		return sha256(
 			JSON.stringify(this.timestamp + this.nodeNumber) + this.data + this.nodeId + this.referenceNodeId + this.childReferenceNodeId + this.genesisReferenceNodeId
 		)
+	}
+
+	verifyOwner(ownerName, password,  encryptionKey){
+		if(encryptionKey == sha256(ownerName+password)){
+			return true;
+		}
 	}
 }
 

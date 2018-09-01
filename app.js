@@ -5,9 +5,9 @@ let tree = new NodeTree();
 
 console.log("Initial Tree: ", tree.nodes, '\n');
 
-tree.addChildNode(56, 0);
-tree.addChildNode(100, 0);
-tree.addChildNode(1000, 0);
+tree.addChildNode(56, 0, 'Vyom', 'abc');
+tree.addChildNode(100, 0, 'Vyom', 'abc');
+tree.addChildNode(1000, 0,'Vyom', 'abc');
 
 console.log("New Tree with 3 nodes attached to genesis: ", tree.nodes, '\n');
 
