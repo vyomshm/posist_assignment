@@ -47,15 +47,20 @@ class NodeTree{
 	}
 
 	editNodeValue(nodeNumber, newValue){
-		// if(this.isValidChild(newValue, this.nodes[nodeNumber].referenceNodeId)){
-			
-		// }
+		let parentNodeNumber = this.getNodefromID(this.nodes[nodeNumber].referenceNodeId);
+		if(newValue < this.nodes[parentNodeNumber].value){
+			//check if the new value is vald before editing
+			this.nodes[nodeNumber].value = newValue;
 
-		//TO-DO check if the new value is vald before editing
-		this.nodes[nodeNumber].value = newValue;
+			//update data
+			this.nodes[nodeNumber].data = newValue;
+		}else{
+			console.log("New node value invalid...Edit cancellled.\n")
+		}
+	}
 
-		//update data
-		this.nodes[nodeNumber].data = newValue;
+	changeOwner(nodeNumber, newOwner){
+		this.nodes[nodeNumber].owner = newOwner;
 	}
 
 	// check if the node value is valid
@@ -72,10 +77,10 @@ class NodeTree{
 
 	//displays tree in bfs pattern
 	getTree(){
-		// TO-DO
-		let sequence = [];
+		// TO-DO - implement bfs
+		let sequence = 'Root::Node:#GenesisNode';
 		this.nodes.forEach((node)=>{
-			sequence.push(node.nodeId);
+			sequence = sequence + ' -> ' + node.nodeId;
 		});
 		return sequence;
 	}

@@ -21,4 +21,7 @@ tree.addChildNode(5600, 3, "Vyom Sharma");
 console.log("\nediting node:#1: ...");
 tree.editNodeValue(1, 57);
 
-console.log("New Tree with a node 1 value edited: ", tree.getTree(), '\n');
+console.log("\changing ownership of node:#4: ...");
+tree.changeOwner(3, "NewOwnerXYZ");
+
+console.log("Final Tree with a node 1 value edited: ", tree.getTree(), '\n');

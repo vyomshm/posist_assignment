@@ -13,7 +13,7 @@ class Node{
 		owner
 	){
 		this.timestamp = timestamp;
-		this.data = this.encrypt(data, owner); // implement encryption func here
+		this.data = this.encrypt(data, owner); // implement encryption func here-AES
 		this.nodeNumber = nodeNumber;
 		this.nodeId = nodeId;
 		this.referenceNodeId = referenceNodeId;

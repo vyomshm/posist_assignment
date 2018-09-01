@@ -6,7 +6,18 @@
 npm i
 ```
 
-# Run app script
+# Run script
 ```
 npm run app
 ```
+
+# Run Express server.js file
+
+```
+npm run server
+```
+
+You can route to 
+
+-  `/tree`
+-  `/tree/:nodeNumber`
