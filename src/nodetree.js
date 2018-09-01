@@ -55,6 +55,7 @@ class NodeTree{
 		// if(isValidChild(newValue, this.nodes[nodeNumber].referenceNodeId)){
 			
 		// }
+		//TO-DO check if the new value is vald before editing
 		this.nodes[nodeNumber].value = newValue;
 
 		//update data
@@ -71,7 +72,7 @@ class NodeTree{
 		}
 	}
 
-	//displays tree in bfs
+	//displays tree in bfs pattern
 	getTree(){
 		// TO-DO
 		return this.nodes;
