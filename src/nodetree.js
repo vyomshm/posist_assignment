@@ -39,16 +39,6 @@ class NodeTree{
 		}
 	}
 
-	// check if the node value is valid
-	isValidChild(value, parentNodeNumber){
-		if(value <= this.nodes[parentNodeNumber].data){
-			return value <= this.totalVal;
-		}else{
-			console.log("Invalid Node: Rejected!!!!");
-			return false;
-		}
-	}
-
 	createChildNode(value, parentNodeNumber){
 		return new Node(
 			Math.floor(Date.now()/1000), // timestamp(now)
@@ -59,6 +49,26 @@ class NodeTree{
 			[], // child id arrays[]
 			"0xGenesisNode" //genesis reference node id
 		);
+	}
+
+	editNodeValue(nodeNumber, newValue){
+		// if(isValidChild(newValue, this.nodes[nodeNumber].referenceNodeId)){
+			
+		// }
+		this.nodes[nodeNumber].value = newValue;
+
+		//update data
+		this.nodes[nodeNumber].data = newValue;
+	}
+
+	// check if the node value is valid
+	isValidChild(value, parentNodeNumber){
+		if(value <= this.nodes[parentNodeNumber].data){
+			return value <= this.totalVal;
+		}else{
+			console.log("Invalid Node: Rejected!!!!");
+			return false;
+		}
 	}
 
 	//displays tree in bfs
