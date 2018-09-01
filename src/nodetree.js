@@ -3,14 +3,14 @@ const Node = require('./node');
 class NodeTree{
 	constructor(){
 		this.GenesisNode = new Node(
-			Math.floor(Date.now()/1000), // genesis timestamp(1st Sep 2018)
+			this.getTimestamp(), // genesis timestamp(1st Sep 2018)
 			1e10, // genesis node data
 			0, // nodeNumber
 			this.getNodeId(0), //genesis reference node id
 			null, // empty reference node ID
 			[], // child id arrays[]
-			"0xGenesisNode", //genesis reference node id
-			"Vyom"
+			"Node:#GenesisNode", //genesis reference node id
+			"Satoshi Nakamoto" // genesis creator
 		);
 
 		this.nodes = [ this.GenesisNode ];
@@ -19,17 +19,9 @@ class NodeTree{
 		this.totalVal = 1e10;
 	}
 
-	getNodeId(_nodeNumber){
-		if(_nodeNumber == 0){
-			return "0xGenesisNode"
-		}else{
-			return `0x${_nodeNumber}`;
-		}
-	}
-
 	addChildNode(value,  parentNodeNumber, owner){
 		if(this.isValidChild(value, parentNodeNumber)){
-			console.log('Adding node, child node valid...');
+			console.log('Adding node, child node valid ...');
 			// add node to nodes[]
 			const childNode = this.createChildNode(value, parentNodeNumber, owner);
 			this.nodes.push(childNode);
@@ -37,6 +29,7 @@ class NodeTree{
 			this.nodes[parentNodeNumber].childReferenceNodeId.push(childNode.nodeId);
 			//update totalVal;
 			this.totalVal += value;
+			console.log('Node added to Tree.\n');
 		}
 	}
 
@@ -47,16 +40,17 @@ class NodeTree{
 			this.nodes.length, // nodeNumber
 			this.getNodeId(this.nodes.length), // nodeId
 			this.nodes[parentNodeNumber].nodeId, // parent reference node ID
-			[], // child id arrays[]
-			"0xGenesisNode", //genesis reference node id
+			[], // child id array[]
+			"Node:#GenesisNode", //genesis reference node id
 			owner
 		);
 	}
 
 	editNodeValue(nodeNumber, newValue){
-		// if(isValidChild(newValue, this.nodes[nodeNumber].referenceNodeId)){
+		// if(this.isValidChild(newValue, this.nodes[nodeNumber].referenceNodeId)){
 			
 		// }
+
 		//TO-DO check if the new value is vald before editing
 		this.nodes[nodeNumber].value = newValue;
 
@@ -74,10 +68,35 @@ class NodeTree{
 		}
 	}
 
+	//Helper functions
+
 	//displays tree in bfs pattern
 	getTree(){
 		// TO-DO
-		return this.nodes;
+		let sequence = [];
+		this.nodes.forEach((node)=>{
+			sequence.push(node.nodeId);
+		});
+		return sequence;
+	}
+
+	getTimestamp(){
+		return Math.floor(Date.now()/1000);
+	}
+
+	getNodefromID(nodeId){
+		if(nodeId == 'Node:#GenesisNode'){
+			return 0;
+		}
+		return parseInt(nodeId.slice(6,nodeId.length), 10);
+	}
+
+	getNodeId(_nodeNumber){
+		if(_nodeNumber == 0){
+			return "Node:#GenesisNode"
+		}else{
+			return `Node:#${_nodeNumber}`;
+		}
 	}
 
 }
