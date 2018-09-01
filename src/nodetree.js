@@ -9,7 +9,8 @@ class NodeTree{
 			this.getNodeId(0), //genesis reference node id
 			null, // empty reference node ID
 			[], // child id arrays[]
-			"0xGenesisNode" //genesis reference node id
+			"0xGenesisNode", //genesis reference node id
+			"Vyom"
 		);
 
 		this.nodes = [ this.GenesisNode ];
@@ -26,11 +27,11 @@ class NodeTree{
 		}
 	}
 
-	addChildNode(value,  parentNodeNumber){
+	addChildNode(value,  parentNodeNumber, owner){
 		if(this.isValidChild(value, parentNodeNumber)){
 			console.log('Adding node, child node valid...');
 			// add node to nodes[]
-			const childNode = this.createChildNode(value, parentNodeNumber);
+			const childNode = this.createChildNode(value, parentNodeNumber, owner);
 			this.nodes.push(childNode);
 			// update parent childReferenceNodeId[]
 			this.nodes[parentNodeNumber].childReferenceNodeId.push(childNode.nodeId);
@@ -39,7 +40,7 @@ class NodeTree{
 		}
 	}
 
-	createChildNode(value, parentNodeNumber){
+	createChildNode(value, parentNodeNumber, owner){
 		return new Node(
 			Math.floor(Date.now()/1000), // timestamp(now)
 			value, // genesis node data
@@ -47,7 +48,8 @@ class NodeTree{
 			this.getNodeId(this.nodes.length), // nodeId
 			this.nodes[parentNodeNumber].nodeId, // parent reference node ID
 			[], // child id arrays[]
-			"0xGenesisNode" //genesis reference node id
+			"0xGenesisNode", //genesis reference node id
+			owner
 		);
 	}
 
