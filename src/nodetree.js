@@ -66,7 +66,7 @@ class NodeTree{
 
 	// check if the node value is valid
 	isValidChild(value, parentNodeNumber){
-		if(value <= this.nodes[parentNodeNumber].data){
+		if(value <= this.nodes[parentNodeNumber].value){
 			return value <= this.totalVal;
 		}else{
 			console.log("Invalid Node: Rejected!!!!");

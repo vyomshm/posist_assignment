@@ -13,7 +13,7 @@ class Node{
 		owner
 	){
 		this.timestamp = timestamp;
-		this.data = data; // implement encryption func here
+		this.data = this.encrypt(data, owner); // implement encryption func here
 		this.nodeNumber = nodeNumber;
 		this.nodeId = nodeId;
 		this.referenceNodeId = referenceNodeId;
@@ -30,11 +30,17 @@ class Node{
 		)
 	}
 
-	verifyOwner(ownerName, password,  encryptionKey){
-		if(encryptionKey == sha256(ownerName+password)){
-			return true;
-		}
+	//encrypts data using sha256
+	// here using data value as an additional key
+	encrypt(data, owner){
+		return sha256(owner + JSON.stringify(data));
 	}
+
+	// verifyOwner(ownerName, password,  encryptionKey){
+	// 	if(encryptionKey == sha256(ownerName+password)){
+	// 		return true;
+	// 	}
+	// }
 }
 
 module.exports = Node;
